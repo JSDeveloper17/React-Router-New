@@ -5,7 +5,7 @@ import EventItem from '../components/EventItem';
 function EventDetail() {
   //todo to use higher level loader data we use useRouteLoaderData("id")
   const data= useRouteLoaderData("event-detail")
-  console.log(data.event)
+  
   return (
    <EventItem event={data.event}/>
   )

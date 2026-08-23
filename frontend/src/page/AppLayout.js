@@ -4,7 +4,7 @@ import { Outlet, useNavigation } from 'react-router-dom';
 
 function AppLayout() {
     const loadingStatus = useNavigation()
-    console.log(loadingStatus)
+    //console.log(loadingStatus)
     
   return (
     <div>

@@ -6,7 +6,7 @@ function EditEventPage() {
   //todo to use higher level loader data we use useRouteLoaderData("id")
   const data = useRouteLoaderData("event-detail")
   return (
-  <EventForm event={data.event}/>  
+  <EventForm event={data.event} method="patch"/>  
   )
 }
 

@@ -4,11 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./page/Home";
 import EventPage, {loader as EventLoader} from "./page/EventPage";
 import EventDetail, {loader as EventDetailLoader, action as DeleteEventAction} from "./page/EventDetail";
-import NewEventPage, {action as NewEventAction}from "./page/NewEventPage";
+import NewEventPage from "./page/NewEventPage";
+import {action as ManipulateEventAction} from "./components/EventForm"
 import EditEventPage from "./page/EditEventPage";
 import AppLayout from "./page/AppLayout";
 import EventRootLayout from "./page/EventRootLayout";
 import Error from "./page/Error";
+import NewsletterPage, { action } from "./page/Newsletter";
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
 //    - HomePage
@@ -35,15 +37,16 @@ function App() {
 
   const router = createBrowserRouter([
     {
+      path:"/",
       element:<AppLayout/>,
       errorElement:<Error/> ,
       children:[
         {
-          path:"/",
+          index:true,
           element:<Home/>
         },
         {
-          path:"/events",
+          path:"events",
           element:<EventRootLayout/>,
           children:[
             {
@@ -65,7 +68,8 @@ function App() {
                 },
                 {
                    path:"edit",
-                   element:<EditEventPage/>
+                   element:<EditEventPage/>,
+                   action: ManipulateEventAction
                 },
               ]
             },
@@ -73,14 +77,18 @@ function App() {
             {
               path:"new",
               element:<NewEventPage/>,
-              action: NewEventAction
+              action: ManipulateEventAction
               //* loader - load data 
               //? action - send data
             },
             
           ]
         },
-        
+        {
+          path:"newsletter",
+          element:<NewsletterPage/>,
+          action: action
+        }
       ]
     }
     
